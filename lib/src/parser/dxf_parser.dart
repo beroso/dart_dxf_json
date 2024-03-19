@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'dxf_iterable.dart';
 import 'entities/entities.dart';
+import 'header/header.dart';
 import 'shared/is_matched.dart';
 import 'types.dart';
 
@@ -30,30 +31,30 @@ class DfxParser {
 
     final scanner = DxfIterator(lines);
 
-    var current = scanner.current;
+    var curr = scanner.current;
 
-    while (!isMatched(current, 0, 'EOF')) {
-      if (isMatched(current, 0, 'SECTION')) {
-        current = scanner.next();
+    while (!isMatched(curr, 0, 'EOF')) {
+      if (isMatched(curr, 0, 'SECTION')) {
+        curr = scanner.next();
 
-        if (isMatched(current, 2, 'HEADER')) {
-          current = scanner.next();
-          // dxf.header = parseHeader(curr, scanner);
-        } else if (isMatched(current, 2, 'BLOCKS')) {
-          current = scanner.next();
-          // dxf.blocks = parseBlocks(current, scanner);
-        } else if (isMatched(current, 2, 'ENTITIES')) {
-          current = scanner.next();
-          dxf.entities.addAll(parseEntities(current, scanner));
-        } else if (isMatched(current, 2, 'TABLES')) {
-          current = scanner.next();
-          // dxf.tables = parseTables(current, scanner);
-        } else if (isMatched(current, 2, 'OBJECTS')) {
-          current = scanner.next();
-          // dxf.objects = parseObjects(current, scanner);
+        if (isMatched(curr, 2, 'HEADER')) {
+          curr = scanner.next();
+          dxf.header.addAll(parseHeader(curr, scanner));
+        } else if (isMatched(curr, 2, 'BLOCKS')) {
+          curr = scanner.next();
+          // dxf.blocks = parseBlocks(curr, scanner);
+        } else if (isMatched(curr, 2, 'ENTITIES')) {
+          curr = scanner.next();
+          dxf.entities.addAll(parseEntities(curr, scanner));
+        } else if (isMatched(curr, 2, 'TABLES')) {
+          curr = scanner.next();
+          // dxf.tables = parseTables(curr, scanner);
+        } else if (isMatched(curr, 2, 'OBJECTS')) {
+          curr = scanner.next();
+          // dxf.objects = parseObjects(curr, scanner);
         }
       }
-      current = scanner.next();
+      curr = scanner.next();
     }
 
     return dxf;
