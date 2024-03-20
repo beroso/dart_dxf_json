@@ -1,5 +1,6 @@
 import '../dxf_iterable.dart';
 import '../parse_helpers.dart';
+import '../shared/is_matched.dart';
 import '../shared/parser_generator.dart';
 
 class CommonDxfEntity {
@@ -168,21 +169,32 @@ final commonEntitySnippets = <DXFParserSnippet>[
     name: 'ownerBlockRecordSoftId',
     parser: identity,
   ),
-  // {
-  //     code: 102, // {ACAD_XDICTIONARY
-  //     parser: skipApplicationGroups,
-  // },
-  // {
-  //     code: 102, // {ACAD_REACTORS
-  //     parser: skipApplicationGroups,
-  // },
-  // {
-  //     code: 102, // {application_name
-  //     parser: skipApplicationGroups,
-  // },
+  DXFParserSnippet(
+    code: [102], // {ACAD_XDICTIONARY
+    parser: skipApplicationGroups,
+  ),
+  DXFParserSnippet(
+    code: [102], // {ACAD_REACTORS
+    parser: skipApplicationGroups,
+  ),
+  DXFParserSnippet(
+    code: [102], // {application_name
+    parser: skipApplicationGroups,
+  ),
   DXFParserSnippet(
     code: [5],
     name: 'handle',
     parser: identity,
   ),
 ];
+
+skipApplicationGroups(
+  ScannerGroup curr,
+  DxfIterator scanner, [
+  Map<String, dynamic>? entity,
+]) {
+  curr = scanner.next();
+  while (!isMatched(curr, 102) && !isMatched(curr, 0, 'EOF')) {
+    curr = scanner.next();
+  }
+}
