@@ -6,9 +6,9 @@ const abort = Object();
 
 typedef ParserFunction = Object? Function(
   ScannerGroup curr,
-  DxfIterator scanner, [
-  Object? entity,
-]);
+  DxfIterator scanner,
+  Map<String, dynamic> entity,
+);
 
 class DXFParserSnippet {
   DXFParserSnippet({
@@ -162,8 +162,8 @@ Map<int, List<DXFParserSnippet>>? findSnippetMap(
   return (currentTarget, fragments.last);
 }
 
-ParserFunction identity = (curr, _, [__]) => curr.value;
+ParserFunction identity = (curr, _, __) => curr.value;
 
-ParserFunction pointParser = (_, scanner, [__]) => parsePoint(scanner);
+ParserFunction pointParser = (_, scanner, __) => parsePoint(scanner);
 
-ParserFunction toBoolean = (curr, _, [__]) => curr.value as int == 1;
+ParserFunction toBoolean = (curr, _, __) => curr.value as int == 1;

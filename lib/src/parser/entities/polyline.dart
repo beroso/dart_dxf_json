@@ -148,7 +148,7 @@ final polylineParserSnippets = <DXFParserSnippet>[
     code: [0],
     name: 'vertices',
     isMultiple: true,
-    parser: (curr, scanner, [entity]) {
+    parser: (curr, scanner, entity) {
       if (!isMatched(curr, 0, 'VERTEX')) return abort;
       curr = scanner.next();
       return VertexParser().parseEntity(scanner, curr);

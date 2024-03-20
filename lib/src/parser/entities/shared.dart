@@ -1,4 +1,5 @@
 import '../dxf_iterable.dart';
+import '../parse_helpers.dart';
 import '../shared/parser_generator.dart';
 
 class CommonDxfEntity {
@@ -125,15 +126,15 @@ final commonEntitySnippets = <DXFParserSnippet>[
     name: 'lineweight',
     parser: identity,
   ),
-  // {
-  //     code: 62,
-  //     name: 'colorIndex',
-  //     parser(curr, scanner, entity) {
-  //         const colorIndex = curr.value;
-  //         entity.color = getAcadColor(Math.abs(colorIndex));
-  //         return colorIndex;
-  //     },
-  // },
+  DXFParserSnippet(
+    code: [62],
+    name: 'colorIndex',
+    parser: (curr, scanner, entity) {
+      final colorIndex = curr.value;
+      entity['color'] = getAcadColor((colorIndex as int).abs());
+      return colorIndex;
+    },
+  ),
   DXFParserSnippet(
     code: [347],
     name: 'materialObjectHardId',
