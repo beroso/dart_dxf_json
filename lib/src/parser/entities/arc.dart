@@ -78,7 +78,7 @@ class ArcEntity extends CommonDxfEntity {
 }
 
 const defaultArcEntity = {
-  'extrusionDirection': Point3D(x: 0, y: 0, z: 1),
+  'extrusionDirection': Point3D(0, 0, 1),
 };
 
 final arcEntityParserSnippets = <DXFParserSnippet>[

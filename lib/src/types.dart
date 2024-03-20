@@ -1,16 +1,9 @@
-class Point2D {
-  final num x;
-  final num y;
-
-  const Point2D({required this.x, required this.y});
-}
-
 class Point3D {
   final num x;
   final num y;
   final num z;
 
-  const Point3D({required this.x, required this.y, required this.z});
+  const Point3D(this.x, this.y, [this.z = 0]);
 }
 
 class Bound {

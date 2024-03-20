@@ -139,7 +139,7 @@ const defaultPolylineEntity = <String, dynamic>{
   'surfaceMDensity': 0,
   'surfaceNDensity': 0,
   'smoothType': SmoothType.none,
-  'extrusionDirection': Point3D(x: 0, y: 0, z: 1),
+  'extrusionDirection': Point3D(0, 0, 1),
   'vertices': <VertexEntity>[],
 };
 

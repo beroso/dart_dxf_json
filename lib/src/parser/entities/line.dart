@@ -73,7 +73,7 @@ class LineEntity extends CommonDxfEntity {
 
 const defaultLineEntity = {
   'thickness': 0,
-  'extrusionDirection': Point3D(x: 0, y: 0, z: 1),
+  'extrusionDirection': Point3D(0, 0, 1),
 };
 
 final lineEntityParserSnippets = <DXFParserSnippet>[
