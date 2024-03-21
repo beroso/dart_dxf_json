@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'blocks/blocks.dart';
 import 'dxf_iterable.dart';
 import 'entities/entities.dart';
 import 'header/header.dart';
@@ -42,7 +43,7 @@ class DfxParser {
           dxf.header.addAll(parseHeader(curr, scanner));
         } else if (isMatched(curr, 2, 'BLOCKS')) {
           curr = scanner.next();
-          // dxf.blocks = parseBlocks(curr, scanner);
+          dxf.blocks.addAll(parseBlocks(curr, scanner));
         } else if (isMatched(curr, 2, 'ENTITIES')) {
           curr = scanner.next();
           dxf.entities.addAll(parseEntities(curr, scanner));
