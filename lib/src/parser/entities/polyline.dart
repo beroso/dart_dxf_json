@@ -33,31 +33,31 @@ enum SmoothType {
 
 class PolylineEntity extends CommonDxfEntity {
   final String subclassMarker;
-  final num? thickness;
-  final num? flag;
-  final num? startWidth;
-  final num? endWidth;
-  final num? meshMVertexCount;
-  final num? meshNVertexCount;
-  final num? surfaceMDensity;
-  final num? surfaceNDensity;
-  final SmoothType? smoothType;
-  final Point3D? extrusionDirection;
-  final List<VertexEntity>? vertices;
+  final num thickness;
+  final num flag;
+  final num startWidth;
+  final num endWidth;
+  final num meshMVertexCount;
+  final num meshNVertexCount;
+  final num surfaceMDensity;
+  final num surfaceNDensity;
+  final SmoothType smoothType;
+  final Point3D extrusionDirection;
+  final List<VertexEntity> vertices;
 
   const PolylineEntity({
     this.subclassMarker = 'AcDb2dPolyline | AcDb3dPolyline',
-    this.thickness,
-    this.flag,
-    this.startWidth,
-    this.endWidth,
-    this.meshMVertexCount,
-    this.meshNVertexCount,
-    this.surfaceMDensity,
-    this.surfaceNDensity,
-    this.smoothType,
-    this.extrusionDirection,
-    this.vertices,
+    required this.thickness,
+    required this.flag,
+    required this.startWidth,
+    required this.endWidth,
+    required this.meshMVertexCount,
+    required this.meshNVertexCount,
+    required this.surfaceMDensity,
+    required this.surfaceNDensity,
+    required this.smoothType,
+    required this.extrusionDirection,
+    required this.vertices,
     // From CommonDxfEntity
     required super.handle,
     super.ownerBlockRecordSoftId,

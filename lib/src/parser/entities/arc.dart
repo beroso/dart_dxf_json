@@ -11,7 +11,7 @@ class ArcEntity extends CommonDxfEntity {
   final num? radius;
   final num? startAngle;
   final num? endAngle;
-  final Point3D? extrusionDirection;
+  final Point3D extrusionDirection;
 
   const ArcEntity({
     this.subclassMarker = 'AcDbArc',
@@ -20,7 +20,7 @@ class ArcEntity extends CommonDxfEntity {
     this.radius,
     this.startAngle,
     this.endAngle,
-    this.extrusionDirection,
+    required this.extrusionDirection,
     // From CommonDxfEntity
     required super.handle,
     super.ownerBlockRecordSoftId,

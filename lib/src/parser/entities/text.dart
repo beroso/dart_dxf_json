@@ -1,5 +1,6 @@
 import '../../types.dart';
 import '../dxf_iterable.dart';
+import '../shared/ensure_handle.dart';
 import '../shared/parser_generator.dart';
 import 'shared.dart';
 
@@ -39,35 +40,35 @@ enum TextVerticalAlign {
 
 class TextEntity extends CommonDxfEntity {
   final String subclassMarker;
-  final String? text;
-  final num? thickness;
+  final String text;
+  final num thickness;
   final Point3D? startPoint;
   final Point3D? endPoint;
   final num? textHeight;
-  final num? rotation; // degree
-  final num? xScale;
-  final num? obliqueAngle;
-  final String? styleName;
-  final num? generationFlag;
-  final TextHorizontalAlign? halign;
-  final TextVerticalAlign? valign;
-  final Point3D? extrusionDirection;
+  final num rotation; // degree
+  final num xScale;
+  final num obliqueAngle;
+  final String styleName;
+  final num generationFlag;
+  final TextHorizontalAlign halign;
+  final TextVerticalAlign valign;
+  final Point3D extrusionDirection;
 
   TextEntity({
     this.subclassMarker = 'AcDbText',
-    this.text,
-    this.thickness,
-    this.startPoint,
-    this.endPoint,
-    this.textHeight,
-    this.rotation,
-    this.xScale,
-    this.obliqueAngle,
-    this.styleName,
-    this.generationFlag,
-    this.halign,
-    this.valign,
-    this.extrusionDirection,
+    required this.text,
+    required this.thickness,
+    required this.startPoint,
+    required this.endPoint,
+    required this.textHeight,
+    required this.rotation,
+    required this.xScale,
+    required this.obliqueAngle,
+    required this.styleName,
+    required this.generationFlag,
+    required this.halign,
+    required this.valign,
+    required this.extrusionDirection,
     // From CommonDxfEntity
     required super.handle,
     super.ownerBlockRecordSoftId,
@@ -235,6 +236,9 @@ class TextEntityParser implements EntityParser {
   TextEntity parseEntity(DxfIterator scanner, ScannerGroup curr) {
     final entity = <String, dynamic>{};
     _parser(curr, scanner, entity);
-    return TextEntity.fromMap(entity);
+    return TextEntity.fromMap({
+      ...entity,
+      'handle': ensureHandle(entity['handle']),
+    });
   }
 }

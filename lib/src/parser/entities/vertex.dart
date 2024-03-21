@@ -21,9 +21,9 @@ enum VertexFlag {
 
 class VertexEntity extends CommonDxfEntity {
   final String subclassMarker;
-  final num? startWidth;
-  final num? endWidth;
-  final num? bulge;
+  final num startWidth;
+  final num endWidth;
+  final num bulge;
   final VertexFlag? flag;
   final num? tangentDirection;
   final num? polyfaceIndex0;
@@ -39,9 +39,9 @@ class VertexEntity extends CommonDxfEntity {
 
   VertexEntity({
     this.subclassMarker = 'AcDb2dVertex | AcDb3dPolylineVertex',
-    this.startWidth,
-    this.endWidth,
-    this.bulge,
+    required this.startWidth,
+    required this.endWidth,
+    required this.bulge,
     this.flag,
     this.tangentDirection,
     this.polyfaceIndex0,

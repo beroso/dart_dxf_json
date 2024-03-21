@@ -6,17 +6,17 @@ import 'shared.dart';
 
 class LineEntity extends CommonDxfEntity {
   final String subclassMarker;
-  final num? thickness;
+  final num thickness;
   final Point3D? startPoint;
   final Point3D? endPoint;
-  final Point3D? extrusionDirection;
+  final Point3D extrusionDirection;
 
   const LineEntity({
     this.subclassMarker = 'AcDbLine',
-    this.thickness,
+    required this.thickness,
     this.startPoint,
     this.endPoint,
-    this.extrusionDirection,
+    required this.extrusionDirection,
     // From CommonDxfEntity
     required super.handle,
     super.ownerBlockRecordSoftId,
