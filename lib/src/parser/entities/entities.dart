@@ -1,6 +1,7 @@
 import '../dxf_iterable.dart';
 import '../shared/is_matched.dart';
 import 'arc.dart';
+import 'attdef.dart';
 import 'line.dart';
 import 'polyline.dart';
 import 'shared.dart';
@@ -9,6 +10,7 @@ import 'text.dart';
 final parsers = {
   for (final parser in [
     ArcEntityParser(),
+    AttDefEntityParser(),
     LineEntityParser(),
     PolylineParser(),
     TextEntityParser(),
