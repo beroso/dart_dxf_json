@@ -4,12 +4,14 @@ import 'arc.dart';
 import 'line.dart';
 import 'polyline.dart';
 import 'shared.dart';
+import 'text.dart';
 
 final parsers = {
   for (final parser in [
     ArcEntityParser(),
     LineEntityParser(),
     PolylineParser(),
+    TextEntityParser(),
   ])
     parser.forEntityName: parser
 };
