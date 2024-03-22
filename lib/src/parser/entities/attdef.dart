@@ -116,8 +116,12 @@ class AttdefEntity extends TextEntity {
       obliqueAngle: map['obliqueAngle'],
       styleName: map['styleName'],
       generationFlag: map['generationFlag'],
-      halign: map['halign'],
-      valign: map['valign'],
+      halign: map['halign'] is TextHorizontalAlign
+          ? map['halign']
+          : TextHorizontalAlign.parse(map['halign'] as int),
+      valign: map['valign'] is TextVerticalAlign
+          ? map['valign']
+          : TextVerticalAlign.parse(map['valign'] as int),
       extrusionDirection: map['extrusionDirection'],
       handle: map['handle'] ?? '', // TODO: default workaround value? ''
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
@@ -240,7 +244,7 @@ class AttDefEntityParser implements EntityParser {
 
   @override
   AttdefEntity parseEntity(DxfIterator scanner, ScannerGroup curr) {
-    const entity = <String, dynamic>{};
+    final entity = <String, dynamic>{};
     _parser(curr, scanner, entity);
     return AttdefEntity.fromMap({
       ...entity,

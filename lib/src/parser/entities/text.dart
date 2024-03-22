@@ -12,6 +12,10 @@ enum TextGenerationFlag {
   final int code;
 
   const TextGenerationFlag(this.code);
+
+  static TextGenerationFlag parse(int code) {
+    return TextGenerationFlag.values.firstWhere((e) => e.code == code);
+  }
 }
 
 enum TextHorizontalAlign {
@@ -25,6 +29,10 @@ enum TextHorizontalAlign {
   final int code;
 
   const TextHorizontalAlign(this.code);
+
+  static TextHorizontalAlign parse(int code) {
+    return TextHorizontalAlign.values.firstWhere((e) => e.code == code);
+  }
 }
 
 enum TextVerticalAlign {
@@ -36,6 +44,10 @@ enum TextVerticalAlign {
   final int code;
 
   const TextVerticalAlign(this.code);
+
+  static TextVerticalAlign parse(int code) {
+    return TextVerticalAlign.values.firstWhere((e) => e.code == code);
+  }
 }
 
 class TextEntity extends CommonDxfEntity {
@@ -105,8 +117,12 @@ class TextEntity extends CommonDxfEntity {
       obliqueAngle: map['obliqueAngle'],
       styleName: map['styleName'],
       generationFlag: map['generationFlag'],
-      halign: map['halign'],
-      valign: map['valign'],
+      halign: map['halign'] is TextHorizontalAlign
+          ? map['halign']
+          : TextHorizontalAlign.parse(map['halign'] as int),
+      valign: map['valign'] is TextVerticalAlign
+          ? map['valign']
+          : TextVerticalAlign.parse(map['valign'] as int),
       extrusionDirection: map['extrusionDirection'],
       handle: map['handle'] ?? '', // TODO: default workaround value? ''
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
