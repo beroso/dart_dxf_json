@@ -4,7 +4,7 @@ import '../shared/parse_point.dart';
 
 Map<String, dynamic> parseHeader(ScannerGroup curr, DxfIterator scanner) {
   // interesting variables:
-  //  $ACADVER, $VIEWDIR, $VIEWSIZE, $VIEWCTR, $TDCREATE, $TDUPDATE
+  // $ACADVER, $VIEWDIR, $VIEWSIZE, $VIEWCTR, $TDCREATE, $TDUPDATE
   // http://www.autodesk.com/techpubs/autocad/acadr14/dxf/header_section_al_u05_c.htm
   // Also see VPORT table entries
   String currVarName = '';

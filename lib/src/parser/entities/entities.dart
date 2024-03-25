@@ -4,6 +4,7 @@ import 'arc.dart';
 import 'attdef.dart';
 import 'attribute.dart';
 import 'circle.dart';
+import 'ellipse.dart';
 import 'line.dart';
 import 'mtext.dart';
 import 'polyline.dart';
@@ -22,6 +23,7 @@ final parsers = {
     AttDefEntityParser(),
     AttributeEntityParser(),
     CircleEntityParser(),
+    EllipseEntityParser(),
     LineEntityParser(),
     MTextEntityParser(),
     PolylineParser(),
