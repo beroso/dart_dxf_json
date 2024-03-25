@@ -124,7 +124,7 @@ class TextEntity extends CommonDxfEntity {
           ? map['valign']
           : TextVerticalAlign.parse(map['valign'] as int),
       extrusionDirection: map['extrusionDirection'],
-      handle: map['handle'] ?? '', // TODO: default workaround value? ''
+      handle: ensureHandle(map['handle']),
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
       isInPaperSpace: map['isInPaperSpace'],
       layer: map['layer'] ?? '', // TODO: default workaround value? ''
@@ -252,9 +252,6 @@ class TextEntityParser implements EntityParser {
   TextEntity parseEntity(DxfIterator scanner, ScannerGroup curr) {
     final entity = <String, dynamic>{};
     _parser(curr, scanner, entity);
-    return TextEntity.fromMap({
-      ...entity,
-      'handle': ensureHandle(entity['handle']),
-    });
+    return TextEntity.fromMap(entity);
   }
 }

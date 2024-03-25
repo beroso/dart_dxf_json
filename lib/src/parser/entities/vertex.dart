@@ -1,4 +1,5 @@
 import '../dxf_iterable.dart';
+import '../shared/ensure_handle.dart';
 import '../shared/parser_generator.dart';
 import 'shared.dart';
 
@@ -76,7 +77,7 @@ class VertexEntity extends CommonDxfEntity {
       x: map['x'],
       y: map['y'],
       z: map['z'],
-      handle: map['handle'] ?? '', // TODO: default workaround value? ''
+      handle: ensureHandle(map['handle']),
       layer: map['layer'] ?? '', // TODO: default workaround value? ''
       // TODO: other CommonDxfEntity types
     );

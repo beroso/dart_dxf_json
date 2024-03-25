@@ -3,6 +3,7 @@ import '../shared/is_matched.dart';
 import 'arc.dart';
 import 'attdef.dart';
 import 'attribute.dart';
+import 'circle.dart';
 import 'line.dart';
 import 'mtext.dart';
 import 'polyline.dart';
@@ -20,6 +21,7 @@ final parsers = {
     ArcEntityParser(),
     AttDefEntityParser(),
     AttributeEntityParser(),
+    CircleEntityParser(),
     LineEntityParser(),
     MTextEntityParser(),
     PolylineParser(),

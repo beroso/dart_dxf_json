@@ -2,6 +2,7 @@ import '../../consts/consts.dart';
 import '../../types.dart';
 import '../dxf_iterable.dart';
 import '../parse_helpers.dart';
+import '../shared/ensure_handle.dart';
 import '../shared/parser_generator.dart';
 import 'shared.dart';
 
@@ -121,7 +122,7 @@ class MTextEntity extends CommonDxfEntity {
       columnGutter: map['columnGutter'],
       columnHeight: map['columnHeight'],
       annotationHeight: map['annotationHeight'],
-      handle: map['handle'] ?? '', // TODO: default workaround value? ''
+      handle: ensureHandle(map['handle']),
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
       isInPaperSpace: map['isInPaperSpace'],
       layer: map['layer'] ?? '', // TODO: default workaround value? ''

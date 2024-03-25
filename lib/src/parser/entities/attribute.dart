@@ -1,5 +1,6 @@
 import '../../types.dart';
 import '../dxf_iterable.dart';
+import '../shared/ensure_handle.dart';
 import '../shared/is_matched.dart';
 import '../shared/parser_generator.dart';
 import 'mtext.dart';
@@ -119,7 +120,7 @@ class AttributeEntity extends CommonDxfEntity {
       alignmentPoint: map['alignmentPoint'],
       annotationScale: map['annotationScale'],
       definitionTag: map['definitionTag'],
-      handle: map['handle'] ?? '', // TODO: default workaround value? ''
+      handle: ensureHandle(map['handle']),
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
       isInPaperSpace: map['isInPaperSpace'],
       layer: map['layer'] ?? '', // TODO: default workaround value? ''

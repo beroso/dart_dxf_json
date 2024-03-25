@@ -1,5 +1,6 @@
 import '../../types.dart';
 import '../dxf_iterable.dart';
+import '../shared/ensure_handle.dart';
 import '../shared/is_matched.dart';
 import '../shared/parser_generator.dart';
 import 'shared.dart';
@@ -96,7 +97,7 @@ class PolylineEntity extends CommonDxfEntity {
       smoothType: map['smoothType'],
       extrusionDirection: map['extrusionDirection'],
       vertices: List.from(map['vertices']),
-      handle: map['handle'] ?? '', // TODO: default workaround value? ''
+      handle: ensureHandle(map['handle']),
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
       isInPaperSpace: map['isInPaperSpace'],
       layer: map['layer'] ?? '', // TODO: default workaround value? ''

@@ -47,7 +47,7 @@ class LineEntity extends CommonDxfEntity {
       startPoint: map['startPoint'],
       endPoint: map['endPoint'],
       extrusionDirection: map['extrusionDirection'],
-      handle: map['handle'] ?? '', // TODO: default workaround value? ''
+      handle: ensureHandle(map['handle']),
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
       isInPaperSpace: map['isInPaperSpace'],
       layer: map['layer'] ?? '', // TODO: default workaround value? ''
@@ -115,9 +115,6 @@ class LineEntityParser implements EntityParser {
   CommonDxfEntity parseEntity(DxfIterator scanner, ScannerGroup curr) {
     final entity = <String, dynamic>{};
     _parser(curr, scanner, entity);
-    return LineEntity.fromMap({
-      ...entity,
-      'handle': ensureHandle(entity['handle']),
-    });
+    return LineEntity.fromMap(entity);
   }
 }

@@ -123,7 +123,7 @@ class AttdefEntity extends TextEntity {
           ? map['valign']
           : TextVerticalAlign.parse(map['valign'] as int),
       extrusionDirection: map['extrusionDirection'],
-      handle: map['handle'] ?? '', // TODO: default workaround value? ''
+      handle: ensureHandle(map['handle']),
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
       isInPaperSpace: map['isInPaperSpace'],
       layer: map['layer'] ?? '', // TODO: default workaround value? ''
@@ -246,9 +246,6 @@ class AttDefEntityParser implements EntityParser {
   AttdefEntity parseEntity(DxfIterator scanner, ScannerGroup curr) {
     final entity = <String, dynamic>{};
     _parser(curr, scanner, entity);
-    return AttdefEntity.fromMap({
-      ...entity,
-      'handle': ensureHandle(entity['handle']),
-    });
+    return AttdefEntity.fromMap(entity);
   }
 }

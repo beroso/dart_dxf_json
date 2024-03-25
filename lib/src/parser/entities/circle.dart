@@ -4,22 +4,18 @@ import '../shared/ensure_handle.dart';
 import '../shared/parser_generator.dart';
 import 'shared.dart';
 
-class ArcEntity extends CommonDxfEntity {
+class CircleEntity extends CommonDxfEntity {
   final String subclassMarker;
-  final num? thickness;
+  final num thickness;
   final Point3D? center;
   final num? radius;
-  final num? startAngle;
-  final num? endAngle;
   final Point3D extrusionDirection;
 
-  const ArcEntity({
-    this.subclassMarker = 'AcDbArc',
-    this.thickness,
+  const CircleEntity({
+    this.subclassMarker = 'AcDbCircle',
+    required this.thickness,
     this.center,
     this.radius,
-    this.startAngle,
-    this.endAngle,
     required this.extrusionDirection,
     // From CommonDxfEntity
     required super.handle,
@@ -42,16 +38,14 @@ class ArcEntity extends CommonDxfEntity {
     super.xdata,
     super.ownerdictionaryHardId,
     super.ownerDictionarySoftId,
-  }) : super(type: 'ARC');
+  }) : super(type: 'CIRCLE');
 
-  factory ArcEntity.fromMap(Map<String, dynamic> map) {
-    return ArcEntity(
-      subclassMarker: map['subclassMarker'] ?? 'AcDbArc',
+  factory CircleEntity.fromMap(Map<String, dynamic> map) {
+    return CircleEntity(
+      subclassMarker: map['subclassMarker'] ?? 'AcDbCircle',
       thickness: map['thickness'],
       center: map['center'],
       radius: map['radius'],
-      startAngle: map['startAngle'],
-      endAngle: map['endAngle'],
       extrusionDirection: map['extrusionDirection'],
       handle: ensureHandle(map['handle']),
       ownerBlockRecordSoftId: map['ownerBlockRecordSoftId'],
@@ -77,30 +71,16 @@ class ArcEntity extends CommonDxfEntity {
   }
 }
 
-const defaultArcEntity = {
-  'extrusionDirection': Point3D(0, 0, 1),
+final defaultCircleEntity = {
+  'thickness': 0,
+  'extrusionDirection': const Point3D(0, 0, 1),
 };
 
-final arcEntityParserSnippets = <DXFParserSnippet>[
+final circleEntityParserSnippets = <DXFParserSnippet>[
   DXFParserSnippet(
     code: [210],
     name: 'extrusionDirection',
     parser: pointParser,
-  ),
-  DXFParserSnippet(
-    code: [51],
-    name: 'endAngle',
-    parser: identity,
-  ),
-  DXFParserSnippet(
-    code: [50],
-    name: 'startAngle',
-    parser: identity,
-  ),
-  DXFParserSnippet(
-    code: [100],
-    name: 'subclassMarker',
-    parser: identity,
   ),
   DXFParserSnippet(
     code: [40],
@@ -118,22 +98,25 @@ final arcEntityParserSnippets = <DXFParserSnippet>[
     parser: identity,
   ),
   DXFParserSnippet(
-    // skip for AcDbCircle
     code: [100],
+    name: 'subclassMarker',
+    parser: identity,
   ),
   ...commonEntitySnippets,
 ];
 
-class ArcEntityParser implements EntityParser {
+class CircleEntityParser implements EntityParser {
   @override
-  final String forEntityName = 'ARC';
-
-  final _parser = createParser(arcEntityParserSnippets, defaultArcEntity);
+  final String forEntityName = 'CIRCLE';
+  final _parser = createParser(
+    circleEntityParserSnippets,
+    defaultCircleEntity,
+  );
 
   @override
-  CommonDxfEntity parseEntity(DxfIterator scanner, ScannerGroup curr) {
+  CircleEntity parseEntity(DxfIterator scanner, ScannerGroup curr) {
     final entity = <String, dynamic>{};
     _parser(curr, scanner, entity);
-    return ArcEntity.fromMap(entity);
+    return CircleEntity.fromMap(entity);
   }
 }
