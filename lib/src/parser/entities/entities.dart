@@ -7,6 +7,12 @@ import 'polyline.dart';
 import 'shared.dart';
 import 'text.dart';
 
+export 'arc.dart';
+export 'attdef.dart';
+export 'line.dart';
+export 'polyline.dart';
+export 'text.dart';
+
 final parsers = {
   for (final parser in [
     ArcEntityParser(),
