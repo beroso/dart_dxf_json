@@ -1,3 +1,10 @@
+class Point2D {
+  final num x;
+  final num y;
+
+  const Point2D(this.x, this.y);
+}
+
 class Point3D {
   final num x;
   final num y;

@@ -7,6 +7,7 @@ import 'circle.dart';
 import 'ellipse.dart';
 import 'leader.dart';
 import 'line.dart';
+import 'lwpolyline.dart';
 import 'mtext.dart';
 import 'polyline.dart';
 import 'shared.dart';
@@ -27,6 +28,7 @@ final parsers = {
     EllipseEntityParser(),
     LeaderEntityParser(),
     LineEntityParser(),
+    LWPolylineParser(),
     MTextEntityParser(),
     PolylineParser(),
     TextEntityParser(),

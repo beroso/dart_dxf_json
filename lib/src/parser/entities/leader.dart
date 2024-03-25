@@ -93,7 +93,7 @@ class LeaderEntity extends CommonDxfEntity {
       textHeight: map['textHeight'],
       textWidth: map['textWidth'],
       numberOfVertices: map['numberOfVertices'],
-      vertices: List<Point3D>.from(map['vertices']),
+      vertices: List.from(map['vertices']),
       byBlockColor: map['byBlockColor'],
       associatedAnnotation: map['associatedAnnotation'],
       normal: map['normal'],
