@@ -2,7 +2,9 @@ import '../dxf_iterable.dart';
 import '../shared/is_matched.dart';
 import 'arc.dart';
 import 'attdef.dart';
+import 'attribute.dart';
 import 'line.dart';
+import 'mtext.dart';
 import 'polyline.dart';
 import 'shared.dart';
 import 'text.dart';
@@ -17,7 +19,9 @@ final parsers = {
   for (final parser in [
     ArcEntityParser(),
     AttDefEntityParser(),
+    AttributeEntityParser(),
     LineEntityParser(),
+    MTextEntityParser(),
     PolylineParser(),
     TextEntityParser(),
   ])
