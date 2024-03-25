@@ -81,6 +81,10 @@ enum AttachmentPoint {
   const AttachmentPoint(this.code);
 
   final int code;
+
+  static AttachmentPoint parse(int code) {
+    return AttachmentPoint.values.firstWhere((e) => e.code == code);
+  }
 }
 
 enum DimensionTextLineSpacing {

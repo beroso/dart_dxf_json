@@ -40,7 +40,7 @@ class AttributeEntity extends CommonDxfEntity {
   final bool? isReallyLocked;
   final num? numberOfSecondaryAttributes;
   final String? secondaryAttributesHardId;
-  final Point3D alignmentPoint;
+  final Point3D? alignmentPoint;
   final num? annotationScale;
   final String? definitionTag;
 
@@ -67,7 +67,7 @@ class AttributeEntity extends CommonDxfEntity {
     this.isReallyLocked,
     this.numberOfSecondaryAttributes,
     this.secondaryAttributesHardId,
-    required this.alignmentPoint,
+    this.alignmentPoint,
     this.annotationScale,
     this.definitionTag,
     // From CommonDxfEntity

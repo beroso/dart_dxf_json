@@ -14,6 +14,10 @@ enum MTextDrawingDirection {
   final int code;
 
   const MTextDrawingDirection(this.code);
+
+  static MTextDrawingDirection parse(int code) {
+    return MTextDrawingDirection.values.firstWhere((e) => e.code == code);
+  }
 }
 
 class MTextEntity extends CommonDxfEntity {
@@ -100,8 +104,12 @@ class MTextEntity extends CommonDxfEntity {
       insertionPoint: map['insertionPoint'],
       height: map['height'],
       width: map['width'],
-      attachmentPoint: map['attachmentPoint'],
-      drawingDirection: map['drawingDirection'],
+      attachmentPoint: map['attachmentPoint'] is AttachmentPoint
+          ? map['attachmentPoint']
+          : AttachmentPoint.parse(map['attachmentPoint'] as int),
+      drawingDirection: map['drawingDirection'] is MTextDrawingDirection
+          ? map['drawingDirection']
+          : MTextDrawingDirection.parse(map['drawingDirection']),
       text: map['text'],
       styleName: map['styleName'],
       extrusionDirection: map['extrusionDirection'],
