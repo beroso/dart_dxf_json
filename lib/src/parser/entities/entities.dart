@@ -9,6 +9,7 @@ import 'leader.dart';
 import 'line.dart';
 import 'lwpolyline.dart';
 import 'mtext.dart';
+import 'point.dart';
 import 'polyline.dart';
 import 'shared.dart';
 import 'text.dart';
@@ -30,6 +31,7 @@ final parsers = {
     LineEntityParser(),
     LWPolylineParser(),
     MTextEntityParser(),
+    PointEntityParser(),
     PolylineParser(),
     TextEntityParser(),
   ])
