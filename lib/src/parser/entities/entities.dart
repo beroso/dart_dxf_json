@@ -17,6 +17,7 @@ import 'text.dart';
 export 'arc.dart';
 export 'attdef.dart';
 export 'line.dart';
+export 'point.dart';
 export 'polyline.dart';
 export 'text.dart';
 
